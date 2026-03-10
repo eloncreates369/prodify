@@ -6,7 +6,7 @@ export async function getTasks(){
 
   try{
 
-    const res = await fetch(`${API}/api/tasks`,{
+    const res = await fetch(`${API}/tasks`,{
       headers:{
         Authorization: getToken()
       }
@@ -29,7 +29,7 @@ export async function getTasks(){
 
 export async function createTask(task){
 
-  const res = await fetch(`${API}/api/tasks`,{
+  const res = await fetch(`${API}/tasks`,{
     method:"POST",
     headers:{
       "Content-Type":"application/json",
@@ -44,7 +44,7 @@ export async function createTask(task){
 
 export async function deleteTask(id){
 
-  await fetch(`${API}/api/tasks/${id}`,{
+  await fetch(`${API}/tasks/${id}`,{
     method:"DELETE",
     headers:{
       Authorization:getToken()
