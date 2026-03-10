@@ -15,9 +15,10 @@ export default function Register(){
 
     if(res.message){
       alert("Account created successfully");
-      window.location.href = "/login";
+
+      navigate("/login");   // ← correct redirect
     }else{
-      alert("Registration failed");
+      alert(res.message || "Registration failed");
     }
 
   }
