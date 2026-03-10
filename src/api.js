@@ -1,6 +1,6 @@
 import { getToken } from "./auth";
 
-const API = "http://localhost:5000";
+const API = "https://prodify-backend-oxmw.onrender.com";
 
 export async function getTasks(){
 
