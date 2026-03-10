@@ -15,8 +15,7 @@ export default function Register(){
 
     if(res.message){
       alert("Account created successfully");
-
-      navigate("/login");   // ← correct redirect
+      navigate("/login");
     }else{
       alert(res.message || "Registration failed");
     }
@@ -24,41 +23,52 @@ export default function Register(){
   }
 
   return(
-    <div style={{padding:40,maxWidth:400,margin:"auto"}}>
-      <h2>Create Account</h2>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={e=>setEmail(e.target.value)}
-        style={{width:"100%",padding:8}}
-      />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
-      <br/><br/>
+      <div className="bg-white w-[380px] p-8 rounded-2xl shadow-2xl">
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={e=>setPassword(e.target.value)}
-        style={{width:"100%",padding:8}}
-      />
+        <h1 className="text-3xl font-bold text-center text-indigo-600 mb-2">
+          Create Account
+        </h1>
 
-      <br/><br/>
+        <p className="text-center text-gray-500 mb-6">
+          Join Prodify today
+        </p>
 
-      <button
-        onClick={handleRegister}
-        style={{width:"100%",padding:10}}
-      >
-        Register
-      </button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e=>setEmail(e.target.value)}
+          className="w-full border p-3 rounded-lg mb-4 focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
 
-      <br/><br/>
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={e=>setPassword(e.target.value)}
+          className="w-full border p-3 rounded-lg mb-6 focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
 
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+        <button
+          onClick={handleRegister}
+          className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
+        >
+          Register
+        </button>
+
+        <p className="text-center text-sm text-gray-500 mt-5">
+          Already have an account?
+          <Link to="/login" className="text-indigo-600 font-semibold ml-1">
+            Login
+          </Link>
+        </p>
+
+      </div>
 
     </div>
+
   );
 }

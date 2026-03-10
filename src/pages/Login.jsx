@@ -2,7 +2,7 @@ import { useState } from "react";
 import { login } from "../auth";
 import { useNavigate, Link } from "react-router-dom";
 
-export default function Login(){
+export default function Login() {
 
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
@@ -21,18 +21,18 @@ export default function Login(){
 
   }
 
-  return(
+  return (
 
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500">
 
-      <div className="bg-white p-8 rounded-xl shadow-xl w-96">
+      <div className="bg-white w-[380px] p-8 rounded-2xl shadow-2xl">
 
-        <h2 className="text-2xl font-bold text-center mb-2">
-          Welcome Back
-        </h2>
+        <h1 className="text-3xl font-bold text-center text-indigo-600 mb-2">
+          Prodify
+        </h1>
 
         <p className="text-center text-gray-500 mb-6">
-          Login to your Prodify account
+          Sign in to continue
         </p>
 
         <input
@@ -40,7 +40,7 @@ export default function Login(){
           placeholder="Email"
           value={email}
           onChange={e=>setEmail(e.target.value)}
-          className="w-full border p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="w-full border p-3 rounded-lg mb-4 focus:ring-2 focus:ring-indigo-400 outline-none"
         />
 
         <input
@@ -48,7 +48,7 @@ export default function Login(){
           placeholder="Password"
           value={password}
           onChange={e=>setPassword(e.target.value)}
-          className="w-full border p-3 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          className="w-full border p-3 rounded-lg mb-6 focus:ring-2 focus:ring-indigo-400 outline-none"
         />
 
         <button
@@ -58,9 +58,9 @@ export default function Login(){
           Login
         </button>
 
-        <p className="text-center text-sm text-gray-500 mt-4">
-          Don't have an account?{" "}
-          <Link to="/register" className="text-indigo-600 font-semibold">
+        <p className="text-center text-sm text-gray-500 mt-5">
+          Don’t have an account?
+          <Link to="/register" className="text-indigo-600 font-semibold ml-1">
             Register
           </Link>
         </p>
@@ -70,4 +70,5 @@ export default function Login(){
     </div>
 
   );
+
 }
