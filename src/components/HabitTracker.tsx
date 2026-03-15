@@ -66,24 +66,72 @@ const HabitTracker = () => {
             return count;
           })();
           return (
-            <motion.div key={habit.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }} transition={{ delay: i * 0.05 }}
-              className="flex items-center gap-3 p-3 rounded-lg bg-muted/40 mb-2 group">
-              <button
-                onClick={(e) => { e.stopPropagation(); toggleHabitDay(habit.id, today); }}
-                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${doneToday ? 'scale-110' : 'bg-muted'}`}
-                style={doneToday ? { backgroundColor: `hsl(${habit.color})` } : {}}
-              >
-                {doneToday && <Check className="w-5 h-5 text-primary-foreground" />}
-              </button>
-              <div className="flex-1 min-w-0 cursor-pointer" onClick={() => navigate(`/habit/${habit.id}`)}>
-                <div className="font-medium text-sm truncate">{habit.title}</div>
-                {streak > 0 && <div className="text-xs flex items-center gap-1" style={{ color: `hsl(${habit.color})` }}><Flame className="w-3 h-3" />{streak} day streak</div>}
-              </div>
-              <button onClick={() => deleteHabit(habit.id)} className="p-1 rounded hover:bg-destructive/20 text-destructive opacity-0 group-hover:opacity-100 transition-opacity">
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </motion.div>
+            <motion.div
+  key={habit.id}
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: 20 }}
+  transition={{ delay: i * 0.05 }}
+  className="p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
+>
+
+  {/* TOP ROW */}
+  <div className="flex items-center gap-3">
+
+    {/* COLOR DOT */}
+    <div
+      className="w-3 h-3 rounded-full flex-shrink-0"
+      style={{ backgroundColor: `hsl(${habit.color})` }}
+    />
+
+    {/* HABIT TEXT */}
+    <div className="flex-1 min-w-0">
+
+      <div className="font-medium text-sm truncate">
+        {habit.title}
+      </div>
+
+      <div className="text-xs text-muted-foreground">
+        Daily Habit
+      </div>
+
+    </div>
+
+    {/* OPEN HABIT PAGE */}
+    <button
+      onClick={() => navigate(`/habit/${habit.id}`)}
+      className="p-1 rounded hover:bg-blue-500/20 text-blue-400 transition"
+    >
+      <ArrowRight className="w-4 h-4" />
+    </button>
+
+  </div>
+
+
+  {/* ACTION BUTTONS BELOW */}
+  <div className="flex gap-3 mt-3 pl-6">
+
+    {/* COMPLETE HABIT */}
+    <button
+      onClick={() => completeHabit(habit.id)}
+      className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
+    >
+      <Check className="w-4 h-4" />
+      <span className="text-xs">Done</span>
+    </button>
+
+    {/* DELETE HABIT */}
+    <button
+      onClick={() => deleteHabit(habit.id)}
+      className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
+    >
+      <Trash2 className="w-4 h-4" />
+      <span className="text-xs">Delete</span>
+    </button>
+
+  </div>
+
+</motion.div>
           );
         })}
       </AnimatePresence>
