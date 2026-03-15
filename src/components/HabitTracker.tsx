@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Plus, Check, Trash2, Flame, ArrowRight } from 'lucide-react';
+
 const HabitTracker = () => {
   const { habits, addHabit, toggleHabitDay, deleteHabit } = useApp();
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ const HabitTracker = () => {
                       className={`w-7 h-7 rounded-full transition-transform ${
                         color === c ? 'scale-125 ring-2 ring-foreground' : ''
                       }`}
-                      style={{ backgroundColor: c }}
+                      style={{ backgroundColor: `hsl(${c})` }}
                     />
                   ))}
                 </div>
@@ -118,70 +118,70 @@ const HabitTracker = () => {
           })();
 
           return (
-           <motion.div
-  key={habit.id}
-  initial={{ opacity: 0, x: -20 }}
-  animate={{ opacity: 1, x: 0 }}
-  exit={{ opacity: 0, x: 20 }}
-  transition={{ delay: i * 0.05 }}
-  className="p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
->
+            <motion.div
+              key={habit.id}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ delay: i * 0.05 }}
+              className="p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
+            >
 
-  {/* TOP ROW */}
-  <div className="flex items-center gap-3">
+              {/* TOP ROW */}
+              <div className="flex items-center gap-3">
 
-    {/* COLOR DOT */}
-    <div
-      className="w-3 h-3 rounded-full flex-shrink-0"
-      style={{ backgroundColor: `hsl(${habit.color})` }}
-    />
+                {/* COLOR DOT */}
+                <div
+                  className="w-3 h-3 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: `hsl(${habit.color})` }}
+                />
 
-    {/* HABIT TEXT */}
-    <div className="flex-1">
+                {/* HABIT TEXT */}
+                <div className="flex-1">
 
-      <div className="font-medium text-sm">
-        {habit.title}
-      </div>
+                  <div className="font-medium text-sm">
+                    {habit.title}
+                  </div>
 
-      <div className="flex items-center gap-1 text-xs">
-        <Flame className="w-3 h-3 text-orange-500" />
-        <span className="text-orange-500">{streak}</span>
-      </div>
+                  <div className="flex items-center gap-1 text-xs">
+                    <Flame className="w-3 h-3 text-orange-500" />
+                    <span className="text-orange-500">{streak}</span>
+                  </div>
 
-    </div>
+                </div>
 
-  </div>
+              </div>
 
-  {/* ACTIONS BELOW */}
-  <div className="flex gap-4 mt-3 ml-6">
+              {/* ACTION BUTTONS BELOW */}
+              <div className="flex gap-4 mt-3 ml-6">
 
-    <button
-      onClick={() => toggleHabitDay(habit.id, today)}
-      className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
-    >
-      <Check className="w-4 h-4" />
-      <span className="text-xs">Done</span>
-    </button>
+                <button
+                  onClick={() => toggleHabitDay(habit.id, today)}
+                  className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
+                >
+                  <Check className="w-4 h-4" />
+                  <span className="text-xs">Done</span>
+                </button>
 
-    <button
-      onClick={() => navigate(`/habit/${habit.id}`)}
-      className="flex items-center gap-1 text-blue-400 hover:scale-105 transition"
-    >
-      <ArrowRight className="w-4 h-4" />
-      <span className="text-xs">Open</span>
-    </button>
+                <button
+                  onClick={() => navigate(`/habit/${habit.id}`)}
+                  className="flex items-center gap-1 text-blue-400 hover:scale-105 transition"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  <span className="text-xs">Open</span>
+                </button>
 
-    <button
-      onClick={() => deleteHabit(habit.id)}
-      className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
-    >
-      <Trash2 className="w-4 h-4" />
-      <span className="text-xs">Delete</span>
-    </button>
+                <button
+                  onClick={() => deleteHabit(habit.id)}
+                  className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
+                >
+                  <Trash2 className="w-4 h-4" />
+                  <span className="text-xs">Delete</span>
+                </button>
 
-  </div>
+              </div>
 
-</motion.div>
+            </motion.div>
           );
         })}
 
