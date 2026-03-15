@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-
+import { Plus, Check, Trash2, Flame, ArrowRight } from 'lucide-react';
 const HabitTracker = () => {
   const { habits, addHabit, toggleHabitDay, deleteHabit } = useApp();
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ const HabitTracker = () => {
           })();
 
           return (
-            <motion.div
+           <motion.div
   key={habit.id}
   initial={{ opacity: 0, x: -20 }}
   animate={{ opacity: 1, x: 0 }}
@@ -137,25 +137,24 @@ const HabitTracker = () => {
     />
 
     {/* HABIT TEXT */}
-    <div className="flex-1 min-w-0">
+    <div className="flex-1">
 
-      <div className="font-medium text-sm truncate">
+      <div className="font-medium text-sm">
         {habit.title}
       </div>
 
-      <div className="text-xs text-muted-foreground flex items-center gap-1">
+      <div className="flex items-center gap-1 text-xs">
         <Flame className="w-3 h-3 text-orange-500" />
-        {streak}
+        <span className="text-orange-500">{streak}</span>
       </div>
 
     </div>
 
   </div>
 
-  {/* ACTION BUTTONS BELOW */}
-  <div className="flex items-center gap-3 mt-3 pl-6">
+  {/* ACTIONS BELOW */}
+  <div className="flex gap-4 mt-3 ml-6">
 
-    {/* DONE */}
     <button
       onClick={() => toggleHabitDay(habit.id, today)}
       className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
@@ -164,7 +163,6 @@ const HabitTracker = () => {
       <span className="text-xs">Done</span>
     </button>
 
-    {/* OPEN */}
     <button
       onClick={() => navigate(`/habit/${habit.id}`)}
       className="flex items-center gap-1 text-blue-400 hover:scale-105 transition"
@@ -173,7 +171,6 @@ const HabitTracker = () => {
       <span className="text-xs">Open</span>
     </button>
 
-    {/* DELETE */}
     <button
       onClick={() => deleteHabit(habit.id)}
       className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
