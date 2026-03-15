@@ -119,65 +119,72 @@ const HabitTracker = () => {
 
           return (
             <motion.div
-              key={habit.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ delay: i * 0.05 }}
-              className="flex items-center gap-3 p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
-            >
+  key={habit.id}
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: 20 }}
+  transition={{ delay: i * 0.05 }}
+  className="p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
+>
 
-              {/* COLOR DOT */}
-              <div
-                className="w-3 h-3 rounded-full flex-shrink-0"
-                style={{ backgroundColor: habit.color }}
-              />
+  {/* TOP ROW */}
+  <div className="flex items-center gap-3">
 
-              {/* HABIT TEXT */}
-              <div className="flex-1 min-w-0">
+    {/* COLOR DOT */}
+    <div
+      className="w-3 h-3 rounded-full flex-shrink-0"
+      style={{ backgroundColor: `hsl(${habit.color})` }}
+    />
 
-                <div className="font-medium text-sm truncate">
-                  {habit.title}
-                </div>
+    {/* HABIT TEXT */}
+    <div className="flex-1 min-w-0">
 
-                <div className="text-xs text-muted-foreground flex items-center gap-1">
-                  <Flame className="w-3 h-3" />
-                  {streak}
-                </div>
+      <div className="font-medium text-sm truncate">
+        {habit.title}
+      </div>
 
-              </div>
+      <div className="text-xs text-muted-foreground flex items-center gap-1">
+        <Flame className="w-3 h-3 text-orange-500" />
+        {streak}
+      </div>
 
-              {/* ACTION BUTTONS */}
-              <div className="flex items-center gap-2">
+    </div>
 
-                <button
-                  onClick={() => toggleHabitDay(habit.id, today)}
-                  className={`p-1 rounded transition ${
-                    doneToday
-                      ? 'text-green-500 bg-green-500/20'
-                      : 'text-muted-foreground hover:bg-green-500/20'
-                  }`}
-                >
-                  <Check className="w-4 h-4" />
-                </button>
+  </div>
 
-                <button
-                  onClick={() => navigate(`/habit/${habit.id}`)}
-                  className="p-1 rounded hover:bg-blue-500/20 text-blue-400 transition"
-                >
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+  {/* ACTION BUTTONS BELOW */}
+  <div className="flex items-center gap-3 mt-3 pl-6">
 
-                <button
-                  onClick={() => deleteHabit(habit.id)}
-                  className="p-1 rounded hover:bg-red-500/20 text-red-500 transition"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+    {/* DONE */}
+    <button
+      onClick={() => toggleHabitDay(habit.id, today)}
+      className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
+    >
+      <Check className="w-4 h-4" />
+      <span className="text-xs">Done</span>
+    </button>
 
-              </div>
+    {/* OPEN */}
+    <button
+      onClick={() => navigate(`/habit/${habit.id}`)}
+      className="flex items-center gap-1 text-blue-400 hover:scale-105 transition"
+    >
+      <ArrowRight className="w-4 h-4" />
+      <span className="text-xs">Open</span>
+    </button>
 
-            </motion.div>
+    {/* DELETE */}
+    <button
+      onClick={() => deleteHabit(habit.id)}
+      className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
+    >
+      <Trash2 className="w-4 h-4" />
+      <span className="text-xs">Delete</span>
+    </button>
+
+  </div>
+
+</motion.div>
           );
         })}
 
