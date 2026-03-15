@@ -3,6 +3,24 @@ import { useApp } from '@/contexts/AppContext';
 import { useNavigate } from 'react-router-dom'; 
 import { TASK_COLORS } from '@/types'; 
 import { motion, AnimatePresence } from 'framer-motion'; 
+import { Plus, X, Clock, Check, Trash2 } from 'lucide-react'; 
+import { format } from 'date-fns'; 
+import { Button } from '@/components/ui/button'; 
+import { Input } from '@/components/ui/input'; 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'; 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'; 
+ 
+import { createTask } from "@/api"; 
+ 
+const TaskList = () => { 
+  const { tasks, addTask, completeTask, deleteTask } = useApp(); 
+  const navigate = useNavig ... Read more
+02:36 PM
+import { useState } from 'react'; 
+import { useApp } from '@/contexts/AppContext'; 
+import { useNavigate } from 'react-router-dom'; 
+import { TASK_COLORS } from '@/types'; 
+import { motion, AnimatePresence } from 'framer-motion'; 
 import { Plus, Clock, Check, Trash2, ArrowRight } from 'lucide-react'; 
 import { format } from 'date-fns'; 
 import { Button } from '@/components/ui/button'; 
