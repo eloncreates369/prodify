@@ -163,65 +163,73 @@ const TaskList = () => {
 
         {activeTasks.map((task, i) => (
 
-          <motion.div
-            key={task.id}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ delay: i * 0.05 }}
-            className="flex items-center gap-3 p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
-          >
+         <motion.div
+  key={task.id}
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  exit={{ opacity: 0, x: 20 }}
+  transition={{ delay: i * 0.05 }}
+  className="p-3 rounded-lg bg-muted/40 mb-2 transition-colors"
+>
 
-            {/* COLOR DOT */}
-            <div
-              className="w-3 h-3 rounded-full flex-shrink-0"
-              style={{ backgroundColor: `hsl(${task.color})` }}
-            />
+  {/* TOP ROW */}
+  <div className="flex items-center gap-3">
 
-            {/* TASK TEXT */}
-            <div className="flex-1 min-w-0">
+    {/* COLOR DOT */}
+    <div
+      className="w-3 h-3 rounded-full flex-shrink-0"
+      style={{ backgroundColor: `hsl(${task.color})` }}
+    />
 
-              <div className="font-medium text-sm truncate">
-                {task.title}
-              </div>
+    {/* TASK TEXT */}
+    <div className="flex-1 min-w-0">
 
-              <div className="text-xs text-muted-foreground flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                {task.startTime} - {task.endTime}
-              </div>
+      <div className="font-medium text-sm truncate">
+        {task.title}
+      </div>
 
-            </div>
+      <div className="text-xs text-muted-foreground flex items-center gap-1">
+        <Clock className="w-3 h-3" />
+        {task.startTime} - {task.endTime}
+      </div>
 
-            {/* ACTION BUTTONS */}
-            <div className="flex items-center gap-2">
+    </div>
 
-              {/* COMPLETE */}
-              <button
-                onClick={() => completeTask(task.id)}
-                className="p-1 rounded hover:bg-green-500/20 text-green-500 transition"
-              >
-                <Check className="w-4 h-4" />
-              </button>
+    {/* ENTER / OPEN BUTTON RIGHT */}
+    <button
+      onClick={() => navigate(`/task/${task.id}`)}
+      className="p-1 rounded hover:bg-blue-500/20 text-blue-400 transition"
+    >
+      <ArrowRight className="w-4 h-4" />
+    </button>
 
-              {/* OPEN DETAILS */}
-              <button
-                onClick={() => navigate(`/task/${task.id}`)}
-                className="p-1 rounded hover:bg-blue-500/20 text-blue-400 transition"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
+  </div>
 
-              {/* DELETE */}
-              <button
-                onClick={() => deleteTask(task.id)}
-                className="p-1 rounded hover:bg-red-500/20 text-red-500 transition"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
 
-            </div>
+  {/* ACTION BUTTONS BELOW */}
+  <div className="flex gap-3 mt-3 pl-6">
 
-          </motion.div>
+    {/* COMPLETE */}
+    <button
+      onClick={() => completeTask(task.id)}
+      className="flex items-center gap-1 text-green-500 hover:scale-105 transition"
+    >
+      <Check className="w-4 h-4" />
+      <span className="text-xs">Done</span>
+    </button>
+
+    {/* DELETE */}
+    <button
+      onClick={() => deleteTask(task.id)}
+      className="flex items-center gap-1 text-red-500 hover:scale-105 transition"
+    >
+      <Trash2 className="w-4 h-4" />
+      <span className="text-xs">Delete</span>
+    </button>
+
+  </div>
+
+</motion.div>
 
         ))}
 
